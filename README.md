@@ -1,1 +1,150 @@
-# daily-dose-v1
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Dose</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4b0082;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+        .section {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #ccc;
+            flex-wrap: wrap;
+        }
+        .section img {
+            width: 150px;
+            height: auto;
+            margin-right: 20px;
+            border-radius: 10px;
+        }
+        .section-content {
+            max-width: 800px;
+        }
+        .section-content h2 {
+            color: #4b0082;
+            font-size: 1.8em;
+        }
+        .section-content a {
+            text-decoration: none;
+            color: #0066cc;
+            font-size: 1.1em;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        .calendar {
+            text-align: center;
+            padding: 20px;
+        }
+        .calendar iframe {
+            width: 100%;
+            max-width: 600px;
+            height: 400px;
+            border: none;
+        }
+        footer {
+            background-color: #4b0082;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 1em;
+        }
+        @media (max-width: 600px) {
+            .section {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .section img {
+                margin-bottom: 15px;
+                margin-right: 0;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>Daily Dose</header>
+
+    <div class="section">
+        <img src="news1.png" alt="Daily Feed">
+        <div class="section-content">
+            <h2>Daily Feed</h2>
+            <a href="https://www.vijaykarnatakaepaper.com/" target="_blank">Vijaya Karnataka Daily Newspaper</a>
+        </div>
+    </div>
+
+    <div class="section">
+        <img src="health.png" alt="Health Advice">
+        <div class="section-content">
+            <h2>Health Advice</h2>
+            <a href="https://lifeandhealth.org/topics/lifestyle/healthy-habits" target="_blank">Healthy Habits from Life and Health</a>
+        </div>
+    </div>
+
+    <div class="section">
+        <img src="motivation.png" alt="Motivational Tips">
+        <div class="section-content">
+            <h2>Motivational Tips for Youngsters</h2>
+            <ul>
+                <li>Believe in yourself and your dreams.</li>
+                <li>Stay consistent and never give up.</li>
+                <li>Surround yourself with positive influences.</li>
+                <li>Take failures as lessons, not defeat.</li>
+                <li>Keep learning and improving every day.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <img src="cinema.png" alt="Kannada Movies">
+        <div class="section-content">
+            <h2>Classic Kannada Movies</h2>
+            <ul>
+                <li>Nagara Haavu (1972)</li>
+                <li>Bangarada Manushya (1972)</li>
+                <li>Kasturi Nivasa (1971)</li>
+                <li>Eradu Kanasu (1974)</li>
+                <li>Bayalu Daari (1976)</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <img src="kids.png" alt="Places for Kids">
+        <div class="section-content">
+            <h2>Places to Visit Around Bangalore for Kids</h2>
+            <ul>
+                <li>Bannerghatta Biological Park</li>
+                <li>Jawahar Bal Bhavan</li>
+                <li>Innovative Film City</li>
+                <li>Snow City</li>
+                <li>Lalbagh Botanical Garden</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="calendar">
+        <h2>2025 Calendar</h2>
+        <iframe src="https://calendar.google.com/calendar/embed?src=en.indian%23holiday%40group.v.calendar.google.com&ctz=Asia%2FKolkata"></iframe>
+    </div>
+
+    <footer>
+        Website created by Shwetha
+    </footer>
+</body>
+</html>
