@@ -70,6 +70,59 @@
     .section { flex-direction: column; align-items: flex-start; }
     .section img { width: 100%; margin-bottom: 15px; }
   }
+/* Media grid layout */
+.media-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.media-item {
+  flex: 1 1 calc(33.333% - 16px);
+  box-sizing: border-box;
+}
+
+.media-item img,
+.video-wrap iframe {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+/* Maintain 16:9 ratio for videos */
+.video-wrap {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+}
+
+.video-wrap iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+}
+
+/* Caption styling */
+.media-item figcaption {
+  text-align: center;
+  margin-top: 8px;
+  font-size: 0.9em;
+  color: #555;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .media-item {
+    flex: 1 1 calc(50% - 16px);
+  }
+}
+@media (max-width: 600px) {
+  .media-item {
+    flex: 1 1 100%;
+  }
+}
 </style>
 
 <!DOCTYPE html>
@@ -231,6 +284,43 @@
             </ul>
         </div>
     </div>
+
+	<section id="media-gallery" class="section">
+  <div class="section-content">
+    <h2>My Media Gallery</h2>
+    <div class="media-grid">
+      <!-- Image items -->
+      <figure class="media-item">
+        <img src="Anvitha_1.jpg" alt="Caption 1">
+        <figcaption>Caption for image 1</figcaption>
+      </figure>
+      <figure class="media-item">
+        <img src="Anvitha_2.jpg" alt="Caption 2">
+        <figcaption>Caption for image 2</figcaption>
+      </figure>
+	        <figure class="media-item">
+        <img src="Anvitha_3.jpg" alt="Caption 2">
+        <figcaption>Caption for image 2</figcaption>
+      </figure>
+	        <figure class="media-item">
+        <img src="Anvitha_4.jpg" alt="Caption 2">
+        <figcaption>Caption for image 2</figcaption>
+      </figure>
+      <!-- Video items -->
+      <div class="media-item video-wrap">
+        <iframe src="Anvitha_v1.mp4"
+                title="Sample Video" allowfullscreen></iframe>
+        <figcaption>Caption for video</figcaption>
+      </div>
+	  <div class="media-item video-wrap">
+        <iframe src="Anvitha_v2.mp4"
+                title="Sample Video" allowfullscreen></iframe>
+        <figcaption>Caption for video</figcaption>
+      </div>
+      <!-- Add more media items similarly -->
+    </div>
+  </div>
+</section>
 
     <div class="calendar">
         <h2>2025 Calendar</h2>
