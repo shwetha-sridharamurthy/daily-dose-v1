@@ -240,7 +240,9 @@
     <footer>
         Website created by Shwetha
     </footer>
-<!-- 💬 Chatbot Button + Box -->
+
+	
+<!-- 💬 Chatbot Button + Chat UI -->
 <style>
   #chat-button {
     position: fixed;
@@ -259,7 +261,7 @@
   }
 
   #chat-container {
-    display: none;
+    display: none; /* ✅ Hidden by default */
     position: fixed;
     bottom: 80px;
     right: 20px;
@@ -300,7 +302,6 @@
     flex: 1;
     padding: 10px;
     border: none;
-    border-radius: 0;
   }
 
   #chat-input button {
@@ -312,25 +313,24 @@
   }
 </style>
 
-<!-- Chat UI -->
 <button id="chat-button">💬</button>
 
-<div id="chat-container">
-  <div id="chat-header">Ask AI</div>
+<div id="chat-container" style="display: none;">
+  <div id="chat-header">AI Chat</div>
   <div id="chat-messages"></div>
   <div id="chat-input">
-    <input type="text" id="user-input" placeholder="Type your message..." />
+    <input type="text" id="user-input" placeholder="Type a message..." />
     <button onclick="sendMessage()">Send</button>
   </div>
 </div>
 
-<!-- JavaScript -->
 <script>
   const chatButton = document.getElementById("chat-button");
   const chatContainer = document.getElementById("chat-container");
   const chatMessages = document.getElementById("chat-messages");
   const userInput = document.getElementById("user-input");
 
+  // Toggle chat visibility on button click
   chatButton.addEventListener("click", () => {
     chatContainer.style.display = chatContainer.style.display === "none" ? "flex" : "none";
   });
@@ -339,6 +339,7 @@
     const message = userInput.value.trim();
     if (!message) return;
 
+    // Show user message
     const userMsg = document.createElement("div");
     userMsg.textContent = "You: " + message;
     chatMessages.appendChild(userMsg);
@@ -358,12 +359,13 @@
       chatMessages.appendChild(botMsg);
       chatMessages.scrollTop = chatMessages.scrollHeight;
     } catch (err) {
-      const errMsg = document.createElement("div");
-      errMsg.textContent = "Error contacting AI.";
-      chatMessages.appendChild(errMsg);
+      const errorMsg = document.createElement("div");
+      errorMsg.textContent = "⚠️ Error contacting AI.";
+      chatMessages.appendChild(errorMsg);
     }
   }
 </script>
+
 	
 
 </body>
