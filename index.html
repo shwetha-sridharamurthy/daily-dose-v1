@@ -240,5 +240,42 @@
     <footer>
         Website created by Shwetha
     </footer>
+	<!-- Chatbot UI -->
+<div id="chatbot-container" style="position: fixed; bottom: 20px; right: 20px; width: 300px; font-family: sans-serif;">
+  <div id="chat-window" style="background: #f4f4f4; border: 1px solid #ccc; border-radius: 10px; padding: 10px; height: 300px; overflow-y: auto;"></div>
+  <input id="chat-input" type="text" placeholder="Type your question..." style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px; margin-top: 5px;" />
+</div>
+
+<script>
+  const chatInput = document.getElementById("chat-input");
+  const chatWindow = document.getElementById("chat-window");
+
+  async function sendMessage(message) {
+    const userMessage = `<div><strong>You:</strong> ${message}</div>`;
+    chatWindow.innerHTML += userMessage;
+    chatWindow.scrollTop = chatWindow.scrollHeight;
+
+    // Send to your API endpoint or serverless function
+    const response = await fetch("https://7ef19f1a-82eb-4093-8f7d-a5f12faf6e72-00-1259tmmvdn4s6.pike.repl.co/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message })
+    });
+
+    const data = await response.json();
+    const botMessage = `<div><strong>Bot:</strong> ${data.reply}</div>`;
+    chatWindow.innerHTML += botMessage;
+    chatWindow.scrollTop = chatWindow.scrollHeight;
+  }
+
+  chatInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && chatInput.value.trim()) {
+      const msg = chatInput.value;
+      chatInput.value = "";
+      sendMessage(msg);
+    }
+  });
+</script>
+
 </body>
 </html>
