@@ -292,11 +292,30 @@
       <p><strong>Masala Chai</strong>: Boil water with tea leaves, ginger, cardamom. Add milk & sugar. Strain and serve hot.</p>
     </div>
 
-    <!-- Weather Update (embed or script) -->
-    <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
-      <h3>☁️ Bangalore Weather</h3>
-      <iframe src="https://forecast7.com/en/12d97177d59/bengaluru/" frameborder="0" width="100%" height="150" style="border-radius: 8px;"></iframe>
-    </div>
+<!-- 🌦 Bangalore Weather Widget -->
+<div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+  <h3>☁️ Bangalore Weather</h3>
+  <div id="weather-box" style="font-size: 16px; line-height: 1.6;">
+    Loading weather...
+  </div>
+</div>
+
+<script>
+  async function fetchWeather() {
+    const res = await fetch("https://api.open-meteo.com/v1/forecast?latitude=12.97&longitude=77.59&current_weather=true");
+    const data = await res.json();
+    const weather = data.current_weather;
+    
+    document.getElementById("weather-box").innerHTML = `
+      Temperature: <strong>${weather.temperature}°C</strong><br>
+      Wind: ${weather.windspeed} km/h<br>
+      Time: ${weather.time}
+    `;
+  }
+
+  fetchWeather();
+</script>
+
 
     <!-- Did You Know -->
     <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
