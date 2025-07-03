@@ -274,46 +274,97 @@
 
 
 <!-- 📸 Moments & Memories Section -->
-<section id="gallery" style="padding: 40px; background: #f9f9f9; font-family: 'Segoe UI', sans-serif;">
-  <h2 style="text-align: center; font-size: 28px; margin-bottom: 30px;">📸 Memory Mosaic</h2>
-
-  <style>
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 20px;
-      justify-items: center;
-      padding: 0 20px;
-    }
-
-    .gallery-grid img,
-    .gallery-grid video {
-      width: 100%;
-      max-width: 160px;
-      height: 120px;
-      object-fit: cover;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s, box-shadow 0.3s;
-      cursor: pointer;
-    }
-
-    .gallery-grid img:hover,
-    .gallery-grid video:hover {
-      transform: scale(1.05);
-      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
-    }
-  </style>
-
-  <div class="gallery-grid">
-    <img src="https://raw.githubusercontent.com/shwetha-sridharamurthy/daily-hub/main/Anvitha_1.jpeg" alt="Photo 1" onclick="openMedia(this.src)">
-    <img src="https://raw.githubusercontent.com/shwetha-sridharamurthy/daily-hub/main/Anvitha_2.jpeg" alt="Photo 2" onclick="openMedia(this.src)">
-    <img src="https://raw.githubusercontent.com/shwetha-sridharamurthy/daily-hub/main/Anvitha_3.jpeg" alt="Photo 3" onclick="openMedia(this.src)">
-    <img src="https://raw.githubusercontent.com/shwetha-sridharamurthy/daily-hub/main/Anvitha_4.jpeg" alt="Photo 4" onclick="openMedia(this.src)">
-    <video src="https://raw.githubusercontent.com/shwetha-sridharamurthy/daily-hub/main/Anvitha_v1.mp4" muted onclick="openMedia(this.src)"></video>
-    <video src="https://raw.githubusercontent.com/shwetha-sridharamurthy/daily-hub/main/Anvitha_v2.mp4" muted onclick="openMedia(this.src)"></video>
+<section id="gallery" style="padding: 40px 20px; background: #f0f0f5; font-family: 'Segoe UI', sans-serif; text-align: center;">
+  <h2 style="font-size: 28px; margin-bottom: 20px;">📸 Memory Mosaic</h2>
+  
+  <div class="gallery-wrapper">
+    <div class="gallery-grid">
+      <!-- Replace these with your GitHub raw links -->
+      <img src="https://raw.githubusercontent.com/shwetha-sridharamurthy/daily-hub/main/Anvitha_1.jpeg" alt="Photo 1" onclick="openMedia(this.src)">
+      <img src="https://raw.githubusercontent.com/shwetha-sridharamurthy/daily-hub/main/Anvitha_2.jpeg" alt="Photo 2" onclick="openMedia(this.src)">
+      <img src="https://raw.githubusercontent.com/shwetha-sridharamurthy/daily-hub/main/Anvitha_3.jpeg" alt="Photo 3" onclick="openMedia(this.src)">
+      <img src="https://raw.githubusercontent.com/shwetha-sridharamurthy/daily-hub/main/Anvitha_4.jpeg" alt="Photo 4" onclick="openMedia(this.src)">
+      <video src="https://raw.githubusercontent.com/shwetha-sridharamurthy/daily-hub/main/Anvitha_v1.mp4" onclick="openMedia(this.src)" muted></video>
+      <video src="https://raw.githubusercontent.com/shwetha-sridharamurthy/daily-hub/main/Anvitha_v2.mp4" onclick="openMedia(this.src)" muted></video>
+    </div>
   </div>
 </section>
+
+<!-- 🖼️ Lightbox Modal -->
+<div id="mediaModal" onclick="closeMedia()" style="display: none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.85); align-items: center; justify-content: center;">
+  <span onclick="closeMedia()" style="position: absolute; top: 20px; right: 30px; color: white; font-size: 28px; cursor: pointer;">&times;</span>
+  <img id="modalImg" style="max-width: 90%; max-height: 80%; display: none;" />
+  <video id="modalVideo" controls style="max-width: 90%; max-height: 80%; display: none;" autoplay></video>
+</div>
+
+<!-- 🎨 Styles -->
+<style>
+  .gallery-wrapper {
+    display: flex;
+    justify-content: center;
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    max-width: 900px;
+    width: 100%;
+  }
+
+  .gallery-grid img,
+  .gallery-grid video {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+  }
+
+  .gallery-grid img:hover,
+  .gallery-grid video:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  }
+
+  @media (max-width: 600px) {
+    .gallery-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>
+
+<!-- 🧠 Script -->
+<script>
+  function openMedia(src) {
+    const isVideo = src.endsWith(".mp4");
+    const modalImg = document.getElementById("modalImg");
+    const modalVideo = document.getElementById("modalVideo");
+
+    modalImg.style.display = isVideo ? "none" : "block";
+    modalVideo.style.display = isVideo ? "block" : "none";
+
+    if (isVideo) {
+      modalVideo.src = src;
+      modalVideo.play();
+    } else {
+      modalImg.src = src;
+    }
+
+    document.getElementById("mediaModal").style.display = "flex";
+  }
+
+  function closeMedia() {
+    document.getElementById("mediaModal").style.display = "none";
+    document.getElementById("modalVideo").pause();
+  }
+</script>
 
 
     <footer>
