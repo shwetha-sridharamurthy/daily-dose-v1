@@ -341,7 +341,7 @@
     </div>
 
     <!-- Kannada Word of the Day -->
-    <div style="
+<div style="
   background: white;
   padding: 12px;
   border-radius: 8px;
@@ -350,10 +350,27 @@
   line-height: 1.4;
 ">
 
-      <h3>🗣️ Kannada Words</h3>
-      <p><strong>Namaskara</strong> (ನಮಸ್ಕಾರ) — Hello / Greetings</p>
-	  <p><strong>Neevu Hegiddera</strong> (ನೀವು ಹೇಗಿದ್ದೀರ) — How are you?</p>
-    </div>
+  <h3>🗣️ Kannada Words</h3>
+
+  <p>
+    <strong>Namaskara</strong> (ನಮಸ್ಕಾರ) — Hello / Greetings
+    <button onclick="playAudio('Namaskara')" style="margin-left: 8px;">🔊</button>
+  </p>
+
+  <p>
+    <strong>Neevu Hegiddera</strong> (ನೀವು ಹೇಗಿದ್ದೀರ) — How are you?
+    <button onclick="playAudio('Neevu Hegiddera')" style="margin-left: 8px;">🔊</button>
+  </p>
+</div>
+
+<script>
+  function playAudio(text) {
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'kn-IN'; // Kannada (India)
+    speechSynthesis.speak(utterance);
+  }
+</script>
+
 
    <!-- Poll of the Day -->
 <div style="
