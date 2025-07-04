@@ -355,8 +355,8 @@
 	  <p><strong>Neevu Hegiddera</strong> (ನೀವು ಹೇಗಿದ್ದೀರ) — How are you?</p>
     </div>
 
-    <!-- Poll of the Day -->
-    <div style="
+   <!-- Poll of the Day -->
+<div style="
   background: white;
   padding: 12px;
   border-radius: 8px;
@@ -365,16 +365,49 @@
   line-height: 1.4;
 ">
 
-      <h3>📊 Question of the Day</h3>
-      <p>Which do you prefer for breakfast?</p>
-      <form>
-        <input type="radio" name="breakfast" id="idli"><label for="idli"> Idli</label><br>
-        <input type="radio" name="breakfast" id="dosa"><label for="dosa"> Dosa</label><br>
-        <input type="radio" name="breakfast" id="poha"><label for="poha"> Poha</label><br>
-        <input type="radio" name="breakfast" id="upma"><label for="upma"> Upma</label><br><br>
-        <button type="submit" style="padding: 6px 14px; border: none; background-color: #007bff; color: white; border-radius: 5px; cursor: pointer;">Submit</button>
-      </form>
-    </div>
+  <h3>📊 Question of the Day</h3>
+  <p>Which do you prefer for breakfast?</p>
+
+  <form id="pollForm">
+    <input type="radio" name="breakfast" id="idli" value="idli" onclick="showImage(this.value)">
+    <label for="idli">Idli</label><br>
+
+    <input type="radio" name="breakfast" id="dosa" value="dosa" onclick="showImage(this.value)">
+    <label for="dosa">Dosa</label><br>
+
+    <input type="radio" name="breakfast" id="poha" value="poha" onclick="showImage(this.value)">
+    <label for="poha">Poha</label><br>
+
+    <input type="radio" name="breakfast" id="upma" value="upma" onclick="showImage(this.value)">
+    <label for="upma">Upma</label><br><br>
+
+    <button type="submit" style="padding: 6px 14px; border: none; background-color: #007bff; color: white; border-radius: 5px; cursor: pointer;">Submit</button>
+  </form>
+
+  <div id="imagePreview" style="margin-top: 12px;">
+    <!-- Image will be shown here -->
+  </div>
+</div>
+
+<script>
+  function showImage(selection) {
+    const imageMap = {
+      idli: "https://raw.githubusercontent.com/shwetha-sridharamurthy/daily-hub/main/idli.webp",
+      dosa: "https://raw.githubusercontent.com/shwetha-sridharamurthy/daily-hub/main/dosa.jpg",
+      poha: "https://raw.githubusercontent.com/shwetha-sridharamurthy/daily-hub/main/poha.jpg",
+      upma: "https://raw.githubusercontent.com/shwetha-sridharamurthy/daily-hub/main/upma.webp"
+    };
+
+    const imagePreview = document.getElementById("imagePreview");
+
+    if (imageMap[selection]) {
+      imagePreview.innerHTML = `<img src="${imageMap[selection]}" alt="${selection}" style="max-width: 100%; height: auto; border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.2);">`;
+    } else {
+      imagePreview.innerHTML = "";
+    }
+  }
+</script>
+
 
 	  <!-- Mood -->
     <div style="
