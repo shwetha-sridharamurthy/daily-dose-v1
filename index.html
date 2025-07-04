@@ -396,7 +396,7 @@
 <p>Take a moment to recognize your mood – it's the first step to managing it!</p>
 </div>
   
-    <!-- ✍️ Submit Your Tip (No Login Needed) -->
+   <!-- ✍️ Submit Your Tip (No Login Needed) -->
 <div style="
   background: white;
   padding: 12px;
@@ -406,17 +406,17 @@
   line-height: 1.4;
 ">
 
-
   <h3>✍️ Submit Your Tip</h3>
 
   <form id="tipForm" onsubmit="handleSubmit(event)">
-    <input type="text" name="name" placeholder="Your name" required style="width:100%; padding:8px; margin-bottom:8px;"><br>
-    <textarea name="tip" placeholder="Your suggestion, fact, or quote..." required style="width:100%; padding:8px; height:80px;"></textarea><br>
+    <input type="text" id="name" name="name" placeholder="Your name" required style="width:100%; padding:8px; margin-bottom:8px;"><br>
+    <textarea id="tip" name="tip" placeholder="Your suggestion, fact, or quote..." required style="width:100%; padding:8px; height:80px;"></textarea><br>
     <button type="submit" style="padding: 6px 14px; border: none; background-color: #28a745; color: white; border-radius: 5px; cursor: pointer;">Send</button>
   </form>
 
   <p id="thankYouMessage" style="display:none; color: green; font-weight: bold; margin-top: 10px;">
-    ✅ Thank you for sharing your tip!
+    ✅ Thank you for sharing your tip!<br>
+    💾 Your tip has been downloaded.
   </p>
 </div>
 
@@ -424,13 +424,25 @@
   function handleSubmit(event) {
     event.preventDefault(); // prevent page reload
 
-    // Hide form
-    document.getElementById("tipForm").style.display = "none";
+    const name = document.getElementById("name").value.trim();
+    const tip = document.getElementById("tip").value.trim();
+    const timestamp = new Date().toLocaleString();
 
-    // Show thank you message
+    const content = `Submitted Tip\n===============\nTime: ${timestamp}\nName: ${name}\nTip: ${tip}\n`;
+
+    // Create blob and trigger download
+    const blob = new Blob([content], { type: "text/plain" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = `tip_${Date.now()}.txt`;
+    link.click();
+
+    // Hide form and show thank you message
+    document.getElementById("tipForm").style.display = "none";
     document.getElementById("thankYouMessage").style.display = "block";
   }
 </script>
+
 </section>
 <!-- ✨ DAILY ENGAGEMENT SECTION END -->
 
